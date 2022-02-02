@@ -48,6 +48,7 @@ describe("Learning testing with Puppeteer", () => {
       devtools: false,
     });
     const page = await browser.newPage();
+
     await page.goto("http://example.com");
     const title = await page.title();
     const url = await page.url();
@@ -61,4 +62,28 @@ describe("Learning testing with Puppeteer", () => {
     expect(count).to.equal(2);
     await browser.close();
   });
+  it("should interact with keyboard, wait for Xpath, element doesn't exist", async function () {
+    const browser = await puppeteer.launch({
+      headless: false,
+      slowMo: 100,
+      devtools: false,
+    });
+    const page = await browser.newPage();
+    await page.setDefaultTimeout(10000); //the default is 30 seconds
+    await page.setDefaultNavigationTimeout(20000); 
+
+    await page.goto('http://zero.webappsecurity.com/index.html')
+    await page.waitForXPath('//img') //give last priority to XPath, because it's little slow compared with other locators (id, name, linktext, css)
+    await page.waitForSelector('#searchTerm')
+    await page.type('#searchTerm', 'Hello World')
+    await page.keyboard.press('Enter', { dealay: 10 })
+    await page.waitFor(5000)
+    await page.click('#signin_button')    
+    await page.waitFor(() => !document.querySelector('#signin_button')) // check for Element Not Exist
+    await page.waitForSelector('#signin_button', {
+      hidden: true,
+      timeout: 3000,
+    }) // alternatively, this will wait for button to not show instead; default 30 sec with global override, highest precedence to function with exact override 
+    await browser.close()
+  })
 });
