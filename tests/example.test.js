@@ -1,5 +1,7 @@
-const puppeteer = require("puppeteer");
-const expect = require("chai").expect;
+import puppeteer from "puppeteer";
+import { expect } from "chai";
+import { click, getText, getCount } from "../lib/helpers.js";
+//to use (ES Modules) syntax instead of const XXX = require('XXX') (CommonJS) syntax add the "type": "module" line in your package.json file.
 
 describe("Learning testing with Puppeteer", () => {
   it("should launch, reload, goto, goBack, goForward, close the browser", async function () {
@@ -36,7 +38,7 @@ describe("Learning testing with Puppeteer", () => {
     await page.select("#preferred-interface", "JavaScript API");
     const message = "Lets fill that message with some text";
     await page.type("#comments", message);
-    await page.click("#submit-button");
+    await click(page, "#submit-button");
     await page.waitForSelector(".result-content");
     await page.waitForTimeout(500);
     browser.close();
@@ -52,8 +54,8 @@ describe("Learning testing with Puppeteer", () => {
     await page.goto("http://example.com");
     const title = await page.title();
     const url = await page.url();
-    const text = await page.$eval("h1", element => element.textContent);
-    const count = await page.$$eval('p', element => element.length)
+    const text = await page.$eval("h1", (element) => element.textContent);
+    const count = await page.$$eval("p", (element) => element.length);
     console.log("Text in h1" + text);
 
     expect(title).to.be.a("string", "Example Domain");
@@ -70,20 +72,20 @@ describe("Learning testing with Puppeteer", () => {
     });
     const page = await browser.newPage();
     await page.setDefaultTimeout(10000); //the default is 30 seconds
-    await page.setDefaultNavigationTimeout(20000); 
+    await page.setDefaultNavigationTimeout(20000);
 
-    await page.goto('http://zero.webappsecurity.com/index.html')
-    await page.waitForXPath('//img') //give last priority to XPath, because it's little slow compared with other locators (id, name, linktext, css)
-    await page.waitForSelector('#searchTerm')
-    await page.type('#searchTerm', 'Hello World')
-    await page.keyboard.press('Enter', { dealay: 10 })
-    await page.waitFor(5000)
-    await page.click('#signin_button')    
-    await page.waitFor(() => !document.querySelector('#signin_button')) // check for Element Not Exist
-    await page.waitForSelector('#signin_button', {
+    await page.goto("http://zero.webappsecurity.com/index.html");
+    await page.waitForXPath("//img"); //give last priority to XPath, because it's little slow compared with other locators (id, name, linktext, css)
+    await page.waitForSelector("#searchTerm");
+    await page.type("#searchTerm", "Hello World");
+    await page.keyboard.press("Enter", { dealay: 10 });
+    await page.waitForTimeout(5000);
+    await click(page, "#signin_button");
+    await page.waitForTimeout(() => !document.querySelector("#signin_button")); // check for Element Not Exist
+    await page.waitForSelector("#signin_button", {
       hidden: true,
       timeout: 3000,
-    }) // alternatively, this will wait for button to not show instead; default 30 sec with global override, highest precedence to function with exact override 
-    await browser.close()
-  })
+    }); // alternatively, this will wait for button to not show instead; default 30 sec with global override, highest precedence to function with exact override
+    await browser.close();
+  });
 });
