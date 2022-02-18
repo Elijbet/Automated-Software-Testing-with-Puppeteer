@@ -34,7 +34,7 @@ describe("Learning testing with Puppeteer", () => {
     const page = await browser.newPage();
     await page.goto("https://devexpress.github.io/testcafe/example");
     await page.type("#developer-name", "Mike", { delay: 10, button: "left" }); //don't use delay for production use, only for debugging and experimenting
-    await page.click("#background-parallel-testing", { clickCount: 2 });
+    await page.click("#background-parallel-testing", { clickCount: 2 }); //use helper
     await page.select("#preferred-interface", "JavaScript API");
     const message = "Lets fill that message with some text";
     await page.type("#comments", message);
@@ -80,7 +80,7 @@ describe("Learning testing with Puppeteer", () => {
     await page.type("#searchTerm", "Hello World");
     await page.keyboard.press("Enter", { dealay: 10 });
     await page.waitForTimeout(5000);
-    await click(page, "#signin_button");
+    await click(page, "#signin_button"); 
     await page.waitForTimeout(() => !document.querySelector("#signin_button")); // check for Element Not Exist
     await page.waitForSelector("#signin_button", {
       hidden: true,
