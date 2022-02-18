@@ -1,6 +1,6 @@
 import puppeteer from "puppeteer";
 import { expect } from "chai";
-import { click, getText, getCount } from "../lib/helpers.js";
+import { click, getText, getCount, shouldNotExist } from "../lib/helpers.js";
 //to use (ES Modules) syntax instead of const XXX = require('XXX') (CommonJS) syntax add the "type": "module" line in your package.json file.
 
 describe("Learning testing with Puppeteer", () => {
@@ -80,12 +80,14 @@ describe("Learning testing with Puppeteer", () => {
     await page.type("#searchTerm", "Hello World");
     await page.keyboard.press("Enter", { dealay: 10 });
     await page.waitForTimeout(5000);
-    await click(page, "#signin_button"); 
-    await page.waitForTimeout(() => !document.querySelector("#signin_button")); // check for Element Not Exist
-    await page.waitForSelector("#signin_button", {
-      hidden: true,
-      timeout: 3000,
-    }); // alternatively, this will wait for button to not show instead; default 30 sec with global override, highest precedence to function with exact override
+    await click(page, "#signin_button");
+    await page.waitForTimeout(2000); //puppeteer is faster than page loading
+    await shouldNotExist(page, "#signin_button");
+    // alternatively, this will wait for button to not show instead; default 30 sec with global override, highest precedence to function with exact override
+    // await page.waitForSelector("#signin_button", {
+    //   hidden: true,
+    //   timeout: 3000,
+    // });
     await browser.close();
   });
 });
