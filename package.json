@@ -5,10 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha --timeout=30000 ./tests",
-    "test:advanced": "./node_modules/mocha/bin/mocha --timeout=30000 ./tests/advanced.test.js",
-    "test:example": "./node_modules/mocha/bin/mocha --timeout=30000 ./tests/example.test.js",
-    "test:e2e-login": "./node_modules/mocha/bin/mocha --timeout=30000 ./tests/e2e/login.test.js",
-    "test:e2e-feedback": "./node_modules/mocha/bin/mocha --timeout=30000 ./tests/e2e/feedback.test.js"
+    "test:e2e": "./node_modules/mocha/bin/mocha --timeout=30000 ./tests/e2e"
   },
   "keywords": [
     "Puppeteer",

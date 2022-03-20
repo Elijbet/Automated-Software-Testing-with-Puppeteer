@@ -1,5 +1,6 @@
 import puppeteer from "puppeteer";
 import { expect } from "chai";
+import { it } from "mocha";
 
 describe('feedback test', () => {
     let browser
@@ -33,6 +34,19 @@ describe('feedback test', () => {
         await page.click('input[type="submit"]')
     })
     it('dislay results page', async function(){
+        await page.waitForSelector('#feedback-title')
+        const url = await page.url()
+        expect(url).to.include('/sendFeedback.html')
+    })
+    it('submit feedback form', async function(){
+        await page.waitForSelector('form')
+        await page.type('#name', 'Name')
+        await page.type('#email', 'test@mail.com')
+        await page.type('#subject', 'Subject')
+        await page.type('#comment', 'Message into the testArea')
+        await page.click('input[type="sumbit"]')
+    })
+    it('display results page', async function(){
         await page.waitForSelector('#feedback-title')
         const url = await page.url()
         expect(url).to.include('/sendFeedback.html')

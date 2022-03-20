@@ -10,7 +10,7 @@ describe("advanced puppeteer automation: device emulation", () => {
   before(async function () {
     // specify your test setup in before hook
     browser = await puppeteer.launch({
-      headless: false,
+      headless: true,
       slowMo: 10,
       devtools: false,
     });
