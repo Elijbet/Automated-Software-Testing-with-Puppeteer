@@ -8,7 +8,7 @@ describe("payment test", () => {
 
   beforeEach(async function () {
     browser = await puppeteer.launch({
-      headless: false,
+      headless: true,
       slowMo: 100,
       devtools: false,
     });
