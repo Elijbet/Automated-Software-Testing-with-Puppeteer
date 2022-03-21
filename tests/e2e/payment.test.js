@@ -1,5 +1,4 @@
 import puppeteer from "puppeteer";
-import { expect } from "chai";
 import { it } from "mocha";
 
 describe("payment test", () => {
@@ -41,6 +40,7 @@ describe("payment test", () => {
     await page.waitForFunction(
       () => document.querySelectorAll(".margin7top").length
     );
+    await page.waitForSelector("#pay_bills_link");
     await page.click("#pay_bills_link");
     await page.waitForSelector("#sp_payee");
     await page.select("#sp_payee", "Apple");

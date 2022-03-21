@@ -6,7 +6,7 @@ describe('login test', () => {
     
     beforeEach(async function() {
         browser = await puppeteer.launch({
-            headless: false,
+            headless: true,
             // slows down Puppeteer operations by the specified amount of milliseconds. It's another way to help see what's going on.
             slowMo: 0,
             devtools: false,

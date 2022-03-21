@@ -8,7 +8,7 @@ describe('feedback test', () => {
 
     before(async function(){
         browser = await puppeteer.launch({
-            headless: true,
+            headless: false,
             slowMo: 0,
             devtools: false,
         })
