@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha --timeout=30000 ./tests",
-    "test:e2e": "./node_modules/mocha/bin/mocha --timeout=30000 ./tests/e2e"
+    "test:e2e": "./node_modules/mocha/bin/mocha --timeout=30000 ./tests/e2e",
+    "test-snapshots": "jest --config=jest.config.js --detectOpenHandles --forceExit",
+    "test-snapshots-update": "jest --config=jest.config.js --updateSnapshot --detectOpenHandles --forceExit"
   },
   "keywords": [
     "Puppeteer",
@@ -17,8 +19,15 @@
   "license": "ISC",
   "dependencies": {
     "chai": "^4.3.6",
+    "jest": "^27.5.1",
+    "jest-image-snapshot": "^4.5.1",
     "mocha": "^9.2.0",
+    "prettier": "^2.6.0",
     "puppeteer": "^13.1.2"
   },
-  "type": "module"
+  "type": "module",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascript]": {
+    "editor.formatOnSave": true
+  }
 }

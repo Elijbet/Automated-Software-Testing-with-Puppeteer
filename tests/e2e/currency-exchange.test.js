@@ -13,6 +13,14 @@ describe("currency-exchange test", () => {
         devtools: false,
     })
     page = await browser.newPage()
+    // slowMo - add pause between every puppeteer action for specific time, basically it slows "time" so you can see better what is going on, it can be useful for debug/development
+
+    // timeout - how long should puppeteer wait to consider function successful or failed
+
+    // implicit waits - the latency that you want to see if specified web element is not present that puppeteer looking for. You are telling puppeteer that it should wait x seconds in cases of specified element not available on the UI (DOM): await page.waitForSelector("your-selector") dynamically waits until the selector is visible. Default 30 sec, or pass an options object with a timeout attribute to override that: await page.waitForSelector(yourSelector, {timeout: 5000});
+
+    // explicit waits - are confined to a particular web element; the max unit of time it is to wait before it gives up: await page.waitFor(5000) which always waits for 5 seconds no matter what.
+
     await page.setDefaultTimeout(10000)
     await page.setDefaultNavigationTimeout(20000)
     await page.goto('http://zero.webappsecurity.com/index.html')

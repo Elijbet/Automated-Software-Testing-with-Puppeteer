@@ -1,6 +1,6 @@
 import puppeteer from "puppeteer";
 import { expect } from "chai";
-import { click, getText, getCount, shouldNotExist } from "../lib/helpers.js";
+import { click, shouldNotExist } from "../../lib/helpers.js";
 //to use (ES Modules) syntax instead of const XXX = require('XXX') (CommonJS) syntax add the "type": "module" line in your package.json file.
 
 describe("Learning testing with Puppeteer", () => {
