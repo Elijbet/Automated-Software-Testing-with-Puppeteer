@@ -7,7 +7,8 @@
     "test": "./node_modules/mocha/bin/mocha --timeout=30000 ./tests",
     "test:e2e": "./node_modules/mocha/bin/mocha --timeout=30000 ./tests/e2e",
     "test-snapshots": "jest --config=jest.config.js --detectOpenHandles --forceExit",
-    "test-snapshots-update": "jest --config=jest.config.js --updateSnapshot --detectOpenHandles --forceExit"
+    "test-snapshots-update": "jest --config=jest.config.js --updateSnapshot --detectOpenHandles --forceExit",
+    "test:percy": "percy exec -- jest -i './tests-snapshots/_tests_/percy.test.js'"
   },
   "keywords": [
     "Puppeteer",
@@ -29,5 +30,9 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[javascript]": {
     "editor.formatOnSave": true
+  },
+  "devDependencies": {
+    "@percy/cli": "^1.0.0-beta.76",
+    "@percy/puppeteer": "^2.0.0"
   }
 }
