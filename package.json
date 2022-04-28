@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "@percy/cli": "^1.0.0-beta.76",
-    "@percy/puppeteer": "^2.0.0"
+    "@percy/puppeteer": "^2.0.0",
+    "eslint": "^8.12.0"
   }
 }

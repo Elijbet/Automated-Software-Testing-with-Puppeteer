@@ -51,4 +51,15 @@ describe("payment test", () => {
     await page.click("#pay_saved_payees");
     await page.waitForSelector("#alert_content");
   });
+  it("measures page performance", async function () {
+    await page.waitForSelector("#onlineBankingMenu");
+
+    const loadTimeMetrics = await page.evaluate(() =>
+      JSON.stringify(window.performance)
+    );
+    console.info(JSON.parse(loadTimeMetrics));
+
+    const runTimeMetrics = await page.metrics();
+    console.info(runTimeMetrics);
+  });
 });
