@@ -84,6 +84,46 @@ JSHeapUsedSize result is actually the output of Performance.getMetrics, which is
 
 Chromium Tracing is a profiling tool that allows recording what the browser is really doing under the hood - with an emphasis on every thread, tab, and process. And yet, it’s reflected in Chrome DevTools as part of the Timeline panel.
 
+Furthermore, this tracing ability is possible with Puppeteer either - which, as we might guess, practically uses the Chrome DevTools Protocol.
+
+```js
+// Starts to record a trace of the operations
+await page.tracing.start({ path: "trace.json" });
+
+await page.goto("https://pptr.dev");
+await page.waitForSelector("title");
+
+// Stops the recording
+await page.tracing.stop();
+```
+
+When the recording is stopped, a file called trace.json is created and contains the output that looks like:
+
+```js
+{
+   "traceEvents":[
+      {
+         "pid": 21975,
+         "tid": 38147,
+         "ts": 17376402124,
+         "ph": "X",
+         "cat": "toplevel",
+         "name": "MessageLoop::RunTask",
+         "args": {
+            "src_file": "../../mojo/public/cpp/system/simple_watcher.cc",
+            "src_func": "Notify"
+         },
+         "dur": 68,
+         "tdur": 56,
+         "tts": 26330
+      },
+      // More trace events
+   ]
+}
+```
+
+Now that we’ve the trace file, we can open it using Chrome DevTools, chrome://tracing or Timeline Viewer, and look at the Performance panel after importing the trace file into one of those.
+
 ### Puppeteer Waits
 
 #### slowMo

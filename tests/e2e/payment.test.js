@@ -29,9 +29,11 @@ describe("payment test", () => {
           .length
     );
   });
+
   after(async function () {
     await browser.close();
   });
+
   it("displays payment form and makes payment", async function () {
     await page.waitForSelector("#onlineBankingMenu");
     await page.click("#onlineBankingMenu");
@@ -51,7 +53,8 @@ describe("payment test", () => {
     await page.click("#pay_saved_payees");
     await page.waitForSelector("#alert_content");
   });
-  it("measures page performance", async function () {
+
+  it("measures page performance", async () => {
     await page.waitForSelector("#onlineBankingMenu");
 
     const loadTimeMetrics = await page.evaluate(() =>
@@ -61,5 +64,18 @@ describe("payment test", () => {
 
     const runTimeMetrics = await page.metrics();
     console.info(runTimeMetrics);
+  });
+
+  it("records browser activities during navigation", async () => {
+    await page.waitForSelector("#onlineBankingMenu");
+
+    // Starts to record a trace of the operations
+    await page.tracing.start({ path: "trace.json" });
+
+    await page.goto("https://pptr.dev");
+    await page.waitForSelector("title");
+
+    // Stops the recording
+    await page.tracing.stop();
   });
 });
