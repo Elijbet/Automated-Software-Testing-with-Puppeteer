@@ -1,3 +1,20 @@
+### Puppeteer vs Puppeteer-core
+
+**Puppeteer** is a product for browser automation and not a test tool. The puppeteer package is the _complete product_. The package is bundled with a Chromium browser that drives the puppeteer-core. This bundled browser makes the download size quite large. The Chrome DevTools team maintains the library. Being an end-user product, puppeteer supports many convenient PUPPETEER\_\* env variables to tweak its behavior. Eg. to fetch Firefox as part of Puppeteer installation you'd specify `PUPPETEER_PRODUCT=firefox npm i puppeteer`
+
+**Puppeteer-core** is a _library_ that helps drive anything that supports DevTools protocol. The package is a lightweight version of Puppeteer that can launch an existing browser installation or connect to a remote one. It does not download any browser by default. Being a library, puppeteer-core is entirely driven through its programmatic interface and disregards all the PUPPETEER\_\* env variables.
+
+### What can Puppeteer do?
+
+Most things that you can do manually in the browser can be done using Puppeteer.
+
+-Generate screenshots and PDFs of pages.
+-Crawl a SPA (Single-Page Application) and generate pre-rendered content ("SSR" (Server-Side Rendering)).
+-Automate actions such as form submission, UI testing, keyboard input.
+-Create an up-to-date, automated testing environment. Run your tests directly in the latest version of Chrome using the latest JavaScript and browser features.
+-Capture a timeline trace of your site to help diagnose performance issues.
+-Test Chrome Extensions.
+
 ### Measuring Performance
 
 Analyze how a page performs, during load and runtime - intending to make it faster.
@@ -141,3 +158,7 @@ The latency that you want to see if specified web element is not present that pu
 #### explicit waits
 
 Are confined to a particular web element; the max unit of time it is to wait before it gives up: `await page.waitFor(5000)` which always waits for 5 seconds no matter what.
+
+### Selector Best Practices
+
+IDs are better than classes, as classes often change. Better yet, is to use data attributes. `<form data-test-id="login-from">` is there only for testing purposes and nothing else. This will make the test more stable.
