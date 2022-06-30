@@ -8,12 +8,12 @@
 
 Most things that you can do manually in the browser can be done using Puppeteer.
 
--Generate screenshots and PDFs of pages.
--Crawl a SPA (Single-Page Application) and generate pre-rendered content ("SSR" (Server-Side Rendering)).
--Automate actions such as form submission, UI testing, keyboard input.
--Create an up-to-date, automated testing environment. Run your tests directly in the latest version of Chrome using the latest JavaScript and browser features.
--Capture a timeline trace of your site to help diagnose performance issues.
--Test Chrome Extensions.
+- Generate screenshots and PDFs of pages.
+- Crawl a SPA (Single-Page Application) and generate pre-rendered content ("SSR" (Server-Side Rendering)).
+- Automate actions such as form submission, UI testing, keyboard input.
+- Create an up-to-date, automated testing environment. Run your tests directly in the latest version of Chrome using the latest JavaScript and browser features.
+- Capture a timeline trace of your site to help diagnose performance issues.
+- Test Chrome Extensions.
 
 ### Measuring Performance
 
